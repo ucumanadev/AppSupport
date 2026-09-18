@@ -1,0 +1,222 @@
+AppSupport — New App Release Setup Instructions
+
+PURPOSE
+
+Use this file whenever adding a new mobile app to the existing
+AppSupport website/repository. Give this file to Codex together with
+access to AppSupport and, when needed, the new app’s source project.
+
+This file is deliberately dynamic. Reuse the structure and workflow, but
+NEVER copy another app’s privacy facts, permissions, SDKs, age language,
+retention behavior, subscriptions, or legal claims without verifying
+that they apply to the new app.
+
+TARGET STRUCTURE
+
+AppSupport/ index.html styles.css README.md / index.html
+support/index.html privacy/index.html terms/index.html
+
+Use a short, stable, lowercase URL slug.
+
+STARTING PROMPT FOR CODEX
+
+I am adding a new app to the existing AppSupport website. Follow
+APPSUPPORT_NEW_APP_INSTRUCTIONS.txt. Inspect the existing AppSupport
+structure and shared styling first. Create the new app folder and
+required pages without unnecessarily modifying existing apps. Reuse the
+site’s structure and visual system, not another app’s
+factual/legal/privacy claims. Inspect the new app’s implementation when
+needed. If an app-specific fact required for Support, Privacy Policy, or
+Terms cannot be verified, ask me rather than guessing. Finish with a
+validation report and either READY TO PUBLISH or a concise list of
+blockers.
+
+INFORMATION TO PROVIDE FOR EACH APP
+
+-   App name
+-   Desired app-slug
+-   Short description/purpose
+-   Platforms being released
+-   Public support email
+-   Current legal publisher/owner name
+-   Effective date
+-   Governing jurisdiction
+-   Intended audience / age positioning
+
+CURRENT SHARED SUPPORT EMAIL
+
+support@pearbasket.com
+
+This can be reused unless deliberately changed. The email/domain does
+not by itself mean that a legal entity named PearBasket exists.
+
+If ownership later changes to a legal entity such as PearBasket LLC,
+update legal/publisher references deliberately after reviewing the
+affected pages.
+
+APP IMPLEMENTATION / PRIVACY REVIEW
+
+Before finalizing privacy language, inspect the actual app and determine
+whether it uses:
+
+-   Camera
+-   Microphone
+-   Photos/media library
+-   Location
+-   Contacts/calendar
+-   Notifications
+-   Files/storage
+-   Accounts/login/profile data
+-   User-generated content
+-   Sharing/export
+-   Local data/caches
+-   Analytics
+-   Crash/error monitoring
+-   Purchases/subscriptions
+-   Advertising/attribution SDKs
+-   AI/external processing
+-   Backend/API services
+-   Other third-party SDKs receiving user/device data
+
+For relevant third parties, identify what the app sends and why and use
+official privacy-policy links where appropriate.
+
+Do not invent fixed retention periods, deletion capabilities, account
+systems, data collection, or privacy guarantees.
+
+SUPPORT PAGE
+
+Create support information for features that actually exist, including
+relevant troubleshooting, permissions, purchases/Restore Purchases when
+applicable, support email, Privacy Policy link, and Terms link.
+
+PRIVACY POLICY
+
+Accurately cover applicable data/permissions, local versus server
+processing, temporary files/cache, saved media, OS sharing,
+analytics/crash reporting, purchases, third parties, retention, deletion
+requests/limitations, children/intended audience, contact information,
+and effective date.
+
+Do not claim Kids-category positioning, child-directed design, age
+verification, or parental-consent functionality unless intentionally
+true.
+
+TERMS OF USE
+
+Cover the actual product purpose, appropriate disclaimers,
+purchases/subscriptions if applicable, acceptable use, intellectual
+property, third-party services, limitations, governing law, contact
+information, and effective date.
+
+Never invent a company. Use the current legal publisher/owner supplied
+for the app.
+
+GITHUB PAGES
+
+The existing AppSupport repository is published through GitHub Pages
+from:
+
+main / (root)
+
+Do not create a separate GitHub Pages repository/site for each app. Add
+the new folder to AppSupport and push it to main.
+
+Current URL pattern:
+
+https://ucumanadev.github.io/AppSupport//
+https://ucumanadev.github.io/AppSupport//support/
+https://ucumanadev.github.io/AppSupport//privacy/
+https://ucumanadev.github.io/AppSupport//terms/
+
+If the GitHub username, repository, or domain changes, derive URLs from
+the current deployment rather than assuming these examples are
+permanent.
+
+FINAL VALIDATION
+
+Before publishing, verify:
+
+-   No unresolved [TODO] placeholders in public HTML
+-   No visible development/review notes
+-   Publisher/legal identity is consistent
+-   Support email is consistent
+-   Effective dates are correct
+-   Governing jurisdiction is correct
+-   Privacy claims match actual implementation
+-   Children/audience language matches release positioning
+-   Third-party links are official/current
+-   Internal relative links resolve
+-   CSS paths resolve
+-   mailto links are correct
+-   Pages retain title, description, viewport metadata, navigation, main
+    content, and footer
+-   No accidental AppSupport analytics/cookies/runtime dependencies were
+    added
+-   GitHub Pages project-site relative paths work
+-   Existing app folders were not unintentionally changed
+
+Finish validation with READY TO PUBLISH or a concise blocker list.
+
+COMMIT AND PUBLISH
+
+From the AppSupport repository:
+
+cd git status git add . git commit -m “Add support pages for ” git push
+origin main
+
+Wait for GitHub Pages deployment and manually open all public pages.
+
+STORE URL MAPPING
+
+Support URL: https://…//support/
+
+Privacy Policy URL: https://…//privacy/
+
+Terms: https://…//terms/
+
+Marketing URL can remain blank when optional unless the release strategy
+needs one.
+
+MOBILE APP BUILD REMINDER
+
+Changing only the AppSupport website does not require rebuilding the
+mobile app.
+
+For the mobile release itself, determine whether app changes affect
+native configuration. iOS permission descriptions and other Info.plist /
+Expo native configuration changes require a NEW NATIVE BUILD; an EAS OTA
+update cannot replace native configuration already compiled into the
+binary.
+
+For an Expo/EAS iOS production release, after verifying the app’s
+release configuration:
+
+npx eas-cli@latest build –platform ios –profile production
+
+After the build succeeds:
+
+npx eas-cli@latest submit –platform ios –profile production
+
+Submit the newly created production build. Apple may request two-factor
+authentication; enter verification codes only into the Apple/EAS
+authentication flow you initiated and never save those codes here.
+
+After processing:
+
+-   Install the exact release candidate from TestFlight.
+-   Test core features and permissions.
+-   Test purchases/subscriptions and Restore Purchases when applicable.
+-   Verify analytics/crash monitoring as appropriate.
+-   Capture final store screenshots from the release candidate when
+    useful.
+-   Select the correct processed build in App Store Connect.
+
+For Android or future build-system changes, determine the current
+release procedure from that app rather than blindly reusing the iOS
+commands.
+
+CORE RULE
+
+REUSE THE APPSUPPORT STRUCTURE AND WORKFLOW — RE-VERIFY THE APP-SPECIFIC
+FACTS EVERY TIME.
