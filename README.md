@@ -13,6 +13,11 @@ A standalone, dependency-free static website for public support and legal inform
 │   ├── support/index.html
 │   ├── privacy/index.html
 │   └── terms/index.html
+├── brezal/
+│   ├── index.html             # Brezal overview
+│   ├── support/index.html
+│   ├── privacy/index.html
+│   └── terms/index.html
 └── README.md
 ```
 
